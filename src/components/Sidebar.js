@@ -1,3 +1,10 @@
+import { Link } from "react-router-dom";
+
+const estiloLi = {
+  textDecoration: 'none',
+  outline: 'none',
+  color: '#fff',
+}
 
 const estiloUl = {
   paddingLeft: '10px',
@@ -7,8 +14,9 @@ const estiloUl = {
   listStyleType: 'none',
   lineHeight: '2.0',
 }
+
 const estiloDiv = {
-  width: '15%',
+  minWidth: '300px',
   backgroundColor: '#456',
   height: '100vh',
 }
@@ -35,9 +43,9 @@ const Sidebar = () => {
       </div>
       <hr />
       <ul style={ estiloUl }>
-        <li>Home</li>
-        <li>Nueva operacion</li>
-        <li>Operaciones</li>
+        <li><Link style={ estiloLi } to='/'>Home</Link></li>
+        <li><Link style={ estiloLi } to='/nueva-operacion'>Nueva operacion</Link></li>
+        <li><Link style={ estiloLi } to='/operaciones'>Operaciones</Link></li>
         <li>Estadisticas</li>
       </ul>
       <hr />
