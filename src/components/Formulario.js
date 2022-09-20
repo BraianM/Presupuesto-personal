@@ -18,7 +18,7 @@ const contenButton = {
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'space-between',
-  width: '300px',
+  width: '100%',
   marginTop: '20px',
 }
 
