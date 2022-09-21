@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import Sidebar from './components/Sidebar';
+import AppRouter from './components/AppRouter';
 import './App.css';
 
 class App extends Component {
@@ -12,14 +12,7 @@ class App extends Component {
   }
   render() {
     return (
-      <main className='app'>
-        <aside>
-          <Sidebar />
-        </aside>
-        <section>
-          <h1>Home</h1>
-        </section>
-      </main>
+      <AppRouter />
     )
   }
 }
