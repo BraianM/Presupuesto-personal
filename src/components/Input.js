@@ -9,6 +9,17 @@ const stylesInput = {
   resize: 'none',
 }
 
-const Input = ({ type, id, name }) => <input style={stylesInput} type={type} id={id} name={name} />
+const Input = ({ pattern, type, id, name, handleChange, value }) => {
+  return (
+    <input
+      onChange={handleChange}
+      value={value}
+      style={stylesInput}
+      type={type}
+      id={id}
+      name={name}
+    />
+  )
+} 
 
 export default Input;

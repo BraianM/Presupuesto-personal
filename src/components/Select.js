@@ -10,11 +10,12 @@ const stylesSelect = {
   resize: 'none',
 }
 
-const Select = ({ id, name }) => {
+const Select = ({ id, name, handleChange }) => {
   return (
-    <select style={stylesSelect} id={id} name={name}>
-      <option value="ingreso">Ingreso</option>
-      <option value="egreso">Egreso</option>
+    <select onChange={handleChange} style={stylesSelect} id={id} name={name}>
+      <option value=""></option>
+      <option value="income">Ingreso</option>
+      <option value="egress">Egreso</option>
     </select>
   )
 }
