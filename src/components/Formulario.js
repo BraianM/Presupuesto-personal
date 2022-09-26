@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { dataContext } from './App'
 import Input from "./Input";
 import Label from "./Label";
 import Button from "./Button";
@@ -24,13 +25,19 @@ const contenButton = {
 }
 
 const Formulario = () => {
+  const [errors, setErrors] = useState({})
+  const { data, setData } = useContext(dataContext) 
   const [input, setInput] = useState({
     concept:'',
     date:'',
     type:'',
     amount:'',
   })
-  const [errors, setErrors] = useState({})
+
+  const addOperation = () => {
+    data.push(input)
+    setData(data)
+  }
 
   const validate = (values) => {
     const errors = {}
@@ -63,9 +70,9 @@ const Formulario = () => {
     const result = validate(input)
     setErrors(result)
     if(!Object.keys(result).length) {
-      console.log('Mensaje enviado')
+      addOperation()
       e.target.reset()
-      console.log(input)
+      setInput({ concept: '', date: '', type: '', amount: '' })
     }
   }
 

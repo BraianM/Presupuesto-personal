@@ -9,7 +9,7 @@ const stylesInput = {
   resize: 'none',
 }
 
-const Input = ({ pattern, type, id, name, handleChange, value }) => {
+const Input = ({ type, id, name, handleChange, value }) => {
   return (
     <input
       onChange={handleChange}

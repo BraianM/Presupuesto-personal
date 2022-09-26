@@ -8,6 +8,7 @@ const stylesSelect = {
   color: '#525c66',
   fontSize: '1em',
   resize: 'none',
+  backgroundColor: 'white',
 }
 
 const Select = ({ id, name, handleChange }) => {

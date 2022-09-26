@@ -1,8 +1,15 @@
 import Sidebar from './Sidebar'
+import { useContext } from 'react'
+import { dataContext } from './App'
+
+const styles = {
+  display: 'flex',
+}
 
 const Home = () => {
+  const { data, setData } = useContext(dataContext)
   return (
-    <main className='app'>
+    <main style={styles} className='app'>
       <aside>
         <Sidebar />
       </aside>
