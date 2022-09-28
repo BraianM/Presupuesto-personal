@@ -1,0 +1,12 @@
+.contenedor-actual{
+    width: 800px;
+    height: 300px;
+    margin: 50px 80px 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(251, 251, 251);
+    box-shadow: 0 3px 3px 1px rgb(0 0 0 / 9% );
+}
+
+ 
