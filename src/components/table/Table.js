@@ -7,6 +7,8 @@ const table = ({ wd='400px', ff='Arial, Helvetica, sans-serif' }) => ({
   fontFamily: ff,
   width: wd,
   borderCollapse: 'collapse',
+  border: '1px solid #ddd',
+  margin: '10px',
 })
 
 const headTh = ({ pad='0', txtAlign='left', bg='#00000', col='#fffff' }) => ({
@@ -14,10 +16,10 @@ const headTh = ({ pad='0', txtAlign='left', bg='#00000', col='#fffff' }) => ({
   textAlign: txtAlign,
   backgroundColor: bg,
   color: col,
+  border: '1px solid #ddd',
 })
 
 const tdAndTh = ({ pad='0px' }) => ({
-  border: '1px solid #ddd',
   padding: pad,
 })
 

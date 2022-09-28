@@ -7,10 +7,12 @@ const estiloDiv = {
 }
 
 const stylesSection = {
+  overflow: 'auto',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
   width: '1000vh',
+  height: '100vh',
 }
 
 const stylesH1 = {
