@@ -2,30 +2,62 @@ import { useContext } from 'react';
 import { dataContext } from './../App';
 import DataList from './DataList'
 
-const styleThead = {
-  border: '1px solid #ddd'
-}
+
+const table = ({ wd='400px', ff='Arial, Helvetica, sans-serif' }) => ({
+  fontFamily: ff,
+  width: wd,
+  borderCollapse: 'collapse',
+})
+
+const headTh = ({ pad='0', txtAlign='left', bg='#00000', col='#fffff' }) => ({
+  padding: pad,
+  textAlign: txtAlign,
+  backgroundColor: bg,
+  color: col,
+})
+
+const tdAndTh = ({ pad='0px' }) => ({
+  border: '1px solid #ddd',
+  padding: pad,
+})
+
+const thRow = ({ color='#fffff' }) => ({
+  backgroundColor: color
+})
+
 
 const Table = () => {
   const { data } = useContext(dataContext)
-  console.log(data)
-  const list = data.map((d) => (
+
+  const setColorRow = (parOrImpar) => {
+    if (parOrImpar % 2) {
+      return '#ffffff'
+    } else {
+      return '#f2f2f2'
+    }
+  }
+
+  const list = data.map((d, i) => (
     <DataList 
+      key={d.id}
       concept={d.concept}
       date={d.date}
       type={d.type}
       amount={d.amount}
+      tdAndTh={tdAndTh}
+      thRow={thRow}
+      colorRow={setColorRow(i)}
     />
   ))
   return (
-    <table style={styleThead}>
+    <table style={table({ wd:'1000px' })}>
       <thead >
         <tr>
-          <th>Concepto</th>
-          <th>Fecha</th>
-          <th>Tipo</th>
-          <th>Monto</th>
-          <th>Acciones</th>
+          <th style={{...tdAndTh({ pad:'8px' }), ...headTh({ pad:'12px', bg:'#0095eb', col:'white' })}}>Concepto</th>
+          <th style={{...tdAndTh({ pad:'8px' }), ...headTh({ pad:'12px', bg:'#0095eb', col:'white' })}}>Fecha</th>
+          <th style={{...tdAndTh({ pad:'8px' }), ...headTh({ pad:'12px', bg:'#0095eb', col:'white' })}}>Tipo</th>
+          <th style={{...tdAndTh({ pad:'8px' }), ...headTh({ pad:'12px', bg:'#0095eb', col:'white' })}}>Monto</th>
+          <th style={{...tdAndTh({ pad:'8px' }), ...headTh({ pad:'12px', bg:'#0095eb', col:'white' })}}>Acciones</th>
         </tr>
       </thead>
       <tbody>{list}</tbody>

@@ -28,6 +28,7 @@ const Formulario = () => {
   const [errors, setErrors] = useState({})
   const { data, setData } = useContext(dataContext) 
   const [input, setInput] = useState({
+    id:'op-' + (data.length + 1),
     concept:'',
     date:'',
     type:'',
@@ -72,7 +73,7 @@ const Formulario = () => {
     if(!Object.keys(result).length) {
       addOperation()
       e.target.reset()
-      setInput({ concept: '', date: '', type: '', amount: '' })
+      setInput({ id:'op-' + (data.length + 1), concept: '', date: '', type: '', amount: '' })
     }
   }
 

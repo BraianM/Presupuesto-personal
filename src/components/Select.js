@@ -15,8 +15,8 @@ const Select = ({ id, name, handleChange }) => {
   return (
     <select onChange={handleChange} style={stylesSelect} id={id} name={name}>
       <option value=""></option>
-      <option value="income">Ingreso</option>
-      <option value="egress">Egreso</option>
+      <option>Ingreso</option>
+      <option>Egreso</option>
     </select>
   )
 }
