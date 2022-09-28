@@ -1,7 +1,3 @@
-import { useContext } from 'react';
-import { dataContext } from './../App';
-import DataList from './DataList'
-
 
 const table = ({ wd='400px', ff='Arial, Helvetica, sans-serif' }) => ({
   fontFamily: ff,
@@ -23,34 +19,8 @@ const tdAndTh = ({ pad='0px' }) => ({
   padding: pad,
 })
 
-const thRow = ({ color='#fffff' }) => ({
-  backgroundColor: color
-})
+const Table = ({ children }) => {
 
-
-const Table = () => {
-  const { data } = useContext(dataContext)
-
-  const setColorRow = (parOrImpar) => {
-    if (parOrImpar % 2) {
-      return '#ffffff'
-    } else {
-      return '#f2f2f2'
-    }
-  }
-
-  const list = data.map((d, i) => (
-    <DataList 
-      key={d.id}
-      concept={d.concept}
-      date={d.date}
-      type={d.type}
-      amount={d.amount}
-      tdAndTh={tdAndTh}
-      thRow={thRow}
-      colorRow={setColorRow(i)}
-    />
-  ))
   return (
     <table style={table({ wd:'1000px' })}>
       <thead >
@@ -62,7 +32,7 @@ const Table = () => {
           <th style={{...tdAndTh({ pad:'8px' }), ...headTh({ pad:'12px', bg:'#0095eb', col:'white' })}}>Acciones</th>
         </tr>
       </thead>
-      <tbody>{list}</tbody>
+      <tbody>{children}</tbody>
     </table>
   )
 }
