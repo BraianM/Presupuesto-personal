@@ -26,23 +26,14 @@ const stylesH1 = {
 const Operaciones = () => {
   const { data } = useContext(dataContext)
 
-  const list = data.map((d, i) => (
-    <DataList 
-      key={d.id}
-      concept={d.concept}
-      date={d.date}
-      type={d.type}
-      amount={d.amount}
-      parOrImpar={i}
-    />
-  ))
+  const listMap = data.map((d, i) => <DataList key={d.id} concept={d.concept} date={d.date} type={d.type} amount={d.amount} parOrImpar={i} />)
 
   return (
     <div style={ estiloDiv }>
       <Sidebar />
       <section style={stylesSection}>
         <h1 style={stylesH1}>Lista de operaciones</h1>
-        <Table>{list}</Table> 
+        <Table>{listMap}</Table>
       </section>
     </div>
   );
