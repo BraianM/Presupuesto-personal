@@ -19,6 +19,10 @@ const stylesSection = {
   height: '100vh',
 }
 
+const styleH2 = {
+  paddingLeft: '10px',
+}
+
 const Home = () => {
   const { data } = useContext(dataContext)
 
