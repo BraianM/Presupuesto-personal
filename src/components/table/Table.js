@@ -20,7 +20,6 @@ const tdAndTh = ({ pad='0px' }) => ({
 })
 
 const Table = ({ children }) => {
-
   return (
     <table style={table({ wd:'1000px' })}>
       <thead >
