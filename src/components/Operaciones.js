@@ -3,6 +3,7 @@ import { dataContext } from './App';
 import DataList from './table/DataList'
 import Sidebar from './Sidebar';
 import Table from './table/Table'
+import FilterTable from './table/FilterTable'
 
 const estiloDiv = {
   display: 'flex',
@@ -33,6 +34,7 @@ const Operaciones = () => {
       <Sidebar />
       <section style={stylesSection}>
         <h1 style={stylesH1}>Lista de operaciones</h1>
+        <FilterTable />
         <Table>{listMap}</Table>
       </section>
     </div>
