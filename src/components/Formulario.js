@@ -36,8 +36,24 @@ const Formulario = () => {
   })
 
   const addOperation = () => {
-    data.push(input)
-    setData(data)
+    if (evaluateResult() === 0  && input.type === 'Egreso' || evaluateResult() < input.amount && input.type === 'Egreso') {
+      console.log('Balance actual 0')
+    } else {
+      data.push(input)
+      setData(data)
+    }
+  }
+
+  const evaluateResult = () => {
+    let result = 0
+    data.forEach((e) => {
+      if (e.type === 'Ingreso') {
+        result += parseInt(e.amount)
+      } else if (e.type === 'Egreso') {
+        result -= parseInt(e.amount)
+      }
+    })
+    return result
   }
 
   const validate = (values) => {
