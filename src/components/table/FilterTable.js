@@ -13,7 +13,7 @@ const styleFilterTable = {
 }
 
 const styleSelect = {
-  width: '200px',
+  width: '250px',
   backgroundColor: 'white',
   border: 'none',
   padding: '10px',
@@ -21,14 +21,13 @@ const styleSelect = {
   color: '#525c66',
   resize: 'none',
   boxSizing: 'border-box',
-  resize: 'none',
 }
 
 const contentSelect = {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-evenly',
-  width: '300px',
+  width: '350px',
 }
 
 const FilterTable = () => {

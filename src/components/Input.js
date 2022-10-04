@@ -9,12 +9,12 @@ const stylesInput = {
   resize: 'none',
 }
 
-const Input = ({ type, id, name, handleChange, value }) => {
+const Input = ({ inputFilter, type, id, name, handleChange, value }) => {
   return (
     <input
       onChange={handleChange}
       value={value}
-      style={stylesInput}
+      style={{...stylesInput, ...inputFilter}}
       type={type}
       id={id}
       name={name}
