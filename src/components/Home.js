@@ -40,7 +40,7 @@ const Home = () => {
         <Resultanteactual />
         <div>
           <h2 style={styleH2}>Ultimas operaciones:</h2>
-          <Table>{listFilter}</Table>
+          <Table list={listFilter} />
         </div>
       </section>
     </main>

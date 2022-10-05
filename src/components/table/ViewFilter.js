@@ -30,7 +30,7 @@ const contentSelect = {
   width: '350px',
 }
 
-const FilterTable = () => {
+const ViewFilter = () => {
   const [option, setOption] = useState('Concepto')
 
   const handleChange = ({target}) => {
@@ -52,4 +52,4 @@ const FilterTable = () => {
   )
 }
 
-export default FilterTable
+export default ViewFilter

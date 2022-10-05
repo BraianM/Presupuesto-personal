@@ -1,3 +1,5 @@
+import {useContext} from 'react'
+import {dataContext} from './../App'
 import Label from './../Label'
 import Input from './../Input'
 
@@ -15,43 +17,50 @@ const contentFilter = {
   boxSizing: 'border-box',
 }
 
-const Filter = ({ option }) => {
-  const filterConcept = (
-    <div style={contentFilter}>
-      <Input inputFilter={ inputFilter({wh:'505px'}) } type='text' />
-    </div>
-  ) 
+const concept = (onChange) => (
+  <div style={contentFilter}>
+    <Input handleChange={(e) => onChange(e)} name='concept' inputFilter={ inputFilter({wh:'505px'}) } type='text' />
+  </div>
+) 
 
-  const filterDate = (
-    <div style={contentFilter}>
-      <Label>Desde</Label>
-      <Input inputFilter={inputFilter({marg:'0px 10px'})} type='date' />
-      <Label>hasta</Label>
-      <Input inputFilter={inputFilter({marg:'0px 10px'})} type='date' />
-    </div>
-  )
+const date = (value) => (
+  <div style={contentFilter}>
+    <Label>Desde</Label>
+    <Input inputFilter={inputFilter({marg:'0px 10px'})} type='date' />
+    <Label>hasta</Label>
+    <Input inputFilter={inputFilter({marg:'0px 10px'})} type='date' />
+  </div>
+)
 
-  const filterType = (
-    <div style={contentFilter}>
-      <div>
-        <Input inputFilter={inputFilter({wh:'15px', marg:'0px 10px 0px 0px'})} type={'radio'}  />
+const type = (value) => (
+  <div style={contentFilter}>
+    <div>
+      <Input inputFilter={inputFilter({wh:'15px', marg:'0px 10px 0px 0px'})} type={'radio'}  />
       <Label>Ingreso & Egreso</Label>
-      </div>
-      <div>
+    </div>
+    <div>
       <Input inputFilter={inputFilter({wh:'15px', marg:'0px 10px 0px 30px'})} type={'radio'} />
       <Label>Ingreso</Label>
-      </div>
-      <div>
+    </div>
+    <div>
       <Input inputFilter={inputFilter({wh:'15px', marg:'0px 10px 0px 30px'})} type={'radio'}  />
       <Label>Egreso</Label>
-      </div>
     </div>
-  )
+  </div>
+)
+
+const Filter = ({ option }) => {
+  const {data, setData} = useContext(dataContext)
+
+  const handleChange = ({target}) => {
+    const {name, value} = target
+    console.log(name, value)
+  }
   return (
     <div>
-      {option === 'Concepto' && filterConcept}
-      {option === 'Fecha' && filterDate}
-      {option === 'Tipo' && filterType}
+      {option === 'Concepto' && concept(handleChange)}
+      {option === 'Fecha' && date()}
+      {option === 'Tipo' && type()}
     </div>
   )
 }

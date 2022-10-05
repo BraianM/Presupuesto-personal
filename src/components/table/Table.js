@@ -19,7 +19,7 @@ const tdAndTh = ({ pad='0px' }) => ({
   padding: pad,
 })
 
-const Table = ({ children }) => {
+const Table = ({ list }) => {
 
   return (
     <table style={table({ wd:'1000px' })}>
@@ -32,7 +32,7 @@ const Table = ({ children }) => {
           <th style={{...tdAndTh({ pad:'8px' }), ...headTh({ pad:'12px', bg:'#0095eb', col:'white' })}}>Acciones</th>
         </tr>
       </thead>
-      <tbody>{children}</tbody>
+      <tbody>{list}</tbody>
     </table>
   )
 }
