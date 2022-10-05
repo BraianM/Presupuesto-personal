@@ -93,6 +93,7 @@ const Formulario = () => {
     }
   }
 
+  console.log(input.amount)
   return (
     <form style={stylesForm} onSubmit={handleSubmit}>
         <div>
