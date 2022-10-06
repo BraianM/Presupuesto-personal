@@ -34,7 +34,7 @@ const Operaciones = () => {
       <Sidebar />
       <section style={stylesSection}>
         <h1 style={stylesH1}>Lista de operaciones</h1>
-        <ViewFilter />
+        <ViewFilter data={data}/>
         <Table list={listMap} />
       </section>
     </div>

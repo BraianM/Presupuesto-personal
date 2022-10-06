@@ -30,12 +30,17 @@ const contentSelect = {
   width: '350px',
 }
 
-const ViewFilter = () => {
+const ViewFilter = ({data}) => {
   const [option, setOption] = useState('Concepto')
 
   const handleChange = ({target}) => {
     const { value } = target
     setOption(value)
+  }
+
+  const getFilter = (value) => {
+    const myfilter = data.filter((e) => e.concept.substring(0, value.length) === value || e.type === value)
+    console.log(myfilter)
   }
   return (
     <div style={styleFilterTable}>
@@ -47,7 +52,7 @@ const ViewFilter = () => {
           <option>Tipo</option>
         </select> 
       </div>
-      <Filter option={option} />
+      <Filter getFilter={getFilter} option={option} />
     </div>
   )
 }

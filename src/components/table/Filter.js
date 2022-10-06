@@ -1,5 +1,3 @@
-import {useContext} from 'react'
-import {dataContext} from './../App'
 import Label from './../Label'
 import Input from './../Input'
 
@@ -19,48 +17,57 @@ const contentFilter = {
 
 const concept = (onChange) => (
   <div style={contentFilter}>
-    <Input handleChange={(e) => onChange(e)} name='concept' inputFilter={ inputFilter({wh:'505px'}) } type='text' />
+    <Input handleChange={(e) => onChange(e)} inputFilter={inputFilter({wh:'505px'})} name='concept' type='text' />
   </div>
 ) 
 
-const date = (value) => (
+const date = (onChange) => (
   <div style={contentFilter}>
     <Label>Desde</Label>
-    <Input inputFilter={inputFilter({marg:'0px 10px'})} type='date' />
+    <Input handleChange={(e) => onChange(e)} inputFilter={inputFilter({marg:'0px 10px'})} name={'date'} type='date' />
     <Label>hasta</Label>
-    <Input inputFilter={inputFilter({marg:'0px 10px'})} type='date' />
+    <Input handleChange={(e) => onChange(e)} inputFilter={inputFilter({marg:'0px 10px'})} name={'date'} type='date' />
   </div>
 )
 
-const type = (value) => (
+const type = (onChange, checked) => (
   <div style={contentFilter}>
     <div>
-      <Input inputFilter={inputFilter({wh:'15px', marg:'0px 10px 0px 0px'})} type={'radio'}  />
+      <Input handleChange={(e) => onChange(e)} inputFilter={inputFilter({wh:'15px', marg:'0px 10px 0px 0px'})} value={''} name={'type'} type={'radio'} checked={checked()} />
       <Label>Ingreso & Egreso</Label>
     </div>
     <div>
-      <Input inputFilter={inputFilter({wh:'15px', marg:'0px 10px 0px 30px'})} type={'radio'} />
+      <Input handleChange={(e) => onChange(e)} inputFilter={inputFilter({wh:'15px', marg:'0px 10px 0px 30px'})} value={'Ingreso'} name={'type'} type={'radio'} />
       <Label>Ingreso</Label>
     </div>
     <div>
-      <Input inputFilter={inputFilter({wh:'15px', marg:'0px 10px 0px 30px'})} type={'radio'}  />
+      <Input handleChange={(e) => onChange(e)} inputFilter={inputFilter({wh:'15px', marg:'0px 10px 0px 30px'})} value={'Egreso'} name={'type'} type={'radio'}  />
       <Label>Egreso</Label>
     </div>
   </div>
 )
 
-const Filter = ({ option }) => {
-  const {data, setData} = useContext(dataContext)
+const Filter = ({ option, getFilter }) => {
 
   const handleChange = ({target}) => {
     const {name, value} = target
-    console.log(name, value)
+    if(name === 'date') {
+      console.log('Filtrando por fecha')
+    } else {
+      getFilter(value)
+    }
   }
+
+  const checked = () => {
+    getFilter('')
+    return true
+  }
+
   return (
     <div>
       {option === 'Concepto' && concept(handleChange)}
-      {option === 'Fecha' && date()}
-      {option === 'Tipo' && type()}
+      {option === 'Fecha' && date(handleChange)}
+      {option === 'Tipo' && type(handleChange, checked)}
     </div>
   )
 }

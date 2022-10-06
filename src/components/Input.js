@@ -9,7 +9,7 @@ const stylesInput = {
   resize: 'none',
 }
 
-const Input = ({ inputFilter, type, id, name, handleChange, value }) => {
+const Input = ({ inputFilter, type, id, name, handleChange, value, checked }) => {
   return (
     <input
       onChange={handleChange}
@@ -18,6 +18,7 @@ const Input = ({ inputFilter, type, id, name, handleChange, value }) => {
       type={type}
       id={id}
       name={name}
+      defaultChecked={checked}
     />
   )
 } 
