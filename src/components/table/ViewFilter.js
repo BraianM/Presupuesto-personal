@@ -38,8 +38,8 @@ const ViewFilter = ({data}) => {
     setOption(value)
   }
 
-  const getFilter = (value) => {
-    const myfilter = data.filter((e) => e.concept.substring(0, value.length) === value || e.type === value)
+  const getFilter = (value, valueDate) => {
+    const myfilter = data.filter((e) => e.concept.toLowerCase().substring(0, value.length).includes(value.toLowerCase()) || valueDate(e.date) || e.type === value)
     console.log(myfilter)
   }
   return (

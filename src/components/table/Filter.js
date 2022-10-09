@@ -1,3 +1,4 @@
+import {useState} from 'react'
 import Label from './../Label'
 import Input from './../Input'
 
@@ -24,9 +25,9 @@ const concept = (onChange) => (
 const date = (onChange) => (
   <div style={contentFilter}>
     <Label>Desde</Label>
-    <Input handleChange={(e) => onChange(e)} inputFilter={inputFilter({marg:'0px 10px'})} name={'date'} type='date' />
+    <Input handleChange={(e) => onChange(e)} inputFilter={inputFilter({marg:'0px 10px'})} name={'from'} type='date' />
     <Label>hasta</Label>
-    <Input handleChange={(e) => onChange(e)} inputFilter={inputFilter({marg:'0px 10px'})} name={'date'} type='date' />
+    <Input handleChange={(e) => onChange(e)} inputFilter={inputFilter({marg:'0px 10px'})} name={'to'} type='date' />
   </div>
 )
 
@@ -48,14 +49,48 @@ const type = (onChange, checked) => (
 )
 
 const Filter = ({ option, getFilter }) => {
+  const dateFilter = {from: '', to: ''}
 
   const handleChange = ({target}) => {
     const {name, value} = target
-    if(name === 'date') {
-      console.log('Filtrando por fecha')
+    if(name === 'from') {
+      dateFilter.from = value
+      console.log(dateFilter)
+      getFilter(value, getFilterDate)
+    } else if (name === 'to') {
+      dateFilter.to = value
+      console.log(dateFilter)
+      getFilter(value, getFilterDate)
     } else {
-      getFilter(value)
+      getFilter(value, getFilterDate)
+      console.log(dateFilter)
     }
+  }
+
+  const getFilterDate = (date) => {
+    let boolean = false
+    if (parseInt(convertElementMiliseg(date)) >= parseInt(convertDateFromMiliseg()) && parseInt(convertElementMiliseg(date)) <= parseInt(convertDateToMiliseg())) {
+      boolean = true
+    }
+    return boolean
+  }
+
+  const convertElementMiliseg = (elem) => {
+    let elementDate = new Date(elem)
+    console.log(elementDate)
+    return Date.UTC(elementDate.getUTCFullYear(), elementDate.getUTCMonth(), elementDate.getUTCDate())
+  }
+
+  const convertDateFromMiliseg = () => {
+    let convertDate = new Date(dateFilter.from)
+    console.log(convertDate)
+    return Date.UTC(convertDate.getUTCFullYear(), convertDate.getUTCMonth(), convertDate.getUTCDate())
+  }
+
+  const convertDateToMiliseg = () => {
+    let convertDateTo = new Date(dateFilter.to)
+    console.log(convertDateTo)
+    return Date.UTC(convertDateTo.getUTCFullYear(), convertDateTo.getUTCMonth(), convertDateTo.getUTCDate())
   }
 
   const checked = () => {
