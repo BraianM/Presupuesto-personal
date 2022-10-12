@@ -19,6 +19,7 @@ const Input = ({ inputFilter, type, id, name, handleChange, value, checked }) =>
       id={id}
       name={name}
       defaultChecked={checked}
+      autoComplete={'off'}
     />
   )
 } 

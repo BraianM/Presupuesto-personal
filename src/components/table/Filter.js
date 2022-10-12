@@ -31,41 +31,25 @@ const date = (onChange) => (
   </div>
 )
 
-const type = (onChange, checked) => (
+const type = (onChange) => (
   <div style={contentFilter}>
     <div>
-      <Input handleChange={(e) => onChange(e)} inputFilter={inputFilter({wh:'15px', marg:'0px 10px 0px 0px'})} value={''} name={'type'} type={'radio'} checked={checked()} />
+      <Input handleChange={(e) => onChange(e)} inputFilter={inputFilter({wh:'20px', marg:'0px 10px 0px 0px'})} name={'type'} type={'radio'} checked={true} />
       <Label>Ingreso & Egreso</Label>
     </div>
     <div>
-      <Input handleChange={(e) => onChange(e)} inputFilter={inputFilter({wh:'15px', marg:'0px 10px 0px 30px'})} value={'Ingreso'} name={'type'} type={'radio'} />
+      <Input handleChange={(e) => onChange(e)} inputFilter={inputFilter({wh:'20px', marg:'0px 10px 0px 30px'})} value={'Ingreso'} name={'type'} type={'radio'} />
       <Label>Ingreso</Label>
     </div>
     <div>
-      <Input handleChange={(e) => onChange(e)} inputFilter={inputFilter({wh:'15px', marg:'0px 10px 0px 30px'})} value={'Egreso'} name={'type'} type={'radio'}  />
+      <Input handleChange={(e) => onChange(e)} inputFilter={inputFilter({wh:'20px', marg:'0px 10px 0px 30px'})} value={'Egreso'} name={'type'} type={'radio'}  />
       <Label>Egreso</Label>
     </div>
   </div>
 )
 
 const Filter = ({ option, getFilter }) => {
-  const dateFilter = {from: '', to: ''}
-
-  const handleChange = ({target}) => {
-    const {name, value} = target
-    if(name === 'from') {
-      dateFilter.from = value
-      console.log(dateFilter)
-      getFilter(value, getFilterDate)
-    } else if (name === 'to') {
-      dateFilter.to = value
-      console.log(dateFilter)
-      getFilter(value, getFilterDate)
-    } else {
-      getFilter(value, getFilterDate)
-      console.log(dateFilter)
-    }
-  }
+  const [dates, setDate] = useState({from:'', to:''})
 
   const getFilterDate = (date) => {
     let boolean = false
@@ -77,32 +61,38 @@ const Filter = ({ option, getFilter }) => {
 
   const convertElementMiliseg = (elem) => {
     let elementDate = new Date(elem)
-    console.log(elementDate)
     return Date.UTC(elementDate.getUTCFullYear(), elementDate.getUTCMonth(), elementDate.getUTCDate())
   }
 
   const convertDateFromMiliseg = () => {
-    let convertDate = new Date(dateFilter.from)
-    console.log(convertDate)
+    let convertDate = new Date(dates.from)
     return Date.UTC(convertDate.getUTCFullYear(), convertDate.getUTCMonth(), convertDate.getUTCDate())
   }
 
   const convertDateToMiliseg = () => {
-    let convertDateTo = new Date(dateFilter.to)
-    console.log(convertDateTo)
+    let convertDateTo = new Date(dates.to)
     return Date.UTC(convertDateTo.getUTCFullYear(), convertDateTo.getUTCMonth(), convertDateTo.getUTCDate())
   }
 
-  const checked = () => {
-    getFilter('')
-    return true
+  const handleChange = ({target}) => {
+    const {name, value} = target
+    if (name === 'from' || name === 'to') {
+      setDate({...dates, [name]: value})
+      dates[name] = value
+      getFilter(value, getFilterDate)
+    } 
+    if (name === 'type' || name === 'concept') {
+      dates.from = ''
+      dates.to = ''
+      getFilter(value, getFilterDate)
+    }
   }
 
   return (
     <div>
       {option === 'Concepto' && concept(handleChange)}
       {option === 'Fecha' && date(handleChange)}
-      {option === 'Tipo' && type(handleChange, checked)}
+      {option === 'Tipo' && type(handleChange)}
     </div>
   )
 }

@@ -30,23 +30,25 @@ const contentSelect = {
   width: '350px',
 }
 
-const ViewFilter = ({data}) => {
+const ViewFilter = ({data, getList}) => {
   const [option, setOption] = useState('Concepto')
 
   const handleChange = ({target}) => {
     const { value } = target
     setOption(value)
+    getList(data)
   }
 
   const getFilter = (value, valueDate) => {
-    const myfilter = data.filter((e) => e.concept.toLowerCase().substring(0, value.length).includes(value.toLowerCase()) || valueDate(e.date) || e.type === value)
-    console.log(myfilter)
+    const myFilter = data.filter((e) => e.concept.toLowerCase().substring(0, value.length).includes(value.toLowerCase()) || valueDate(e.date) || e.type === value)
+    getList(myFilter)
   }
+
   return (
     <div style={styleFilterTable}>
       <div style={contentSelect}>
         <Label>Filtar por:</Label>
-        <select style={styleSelect} onChange={handleChange}>
+        <select style={styleSelect} onChange={handleChange} >
           <option>Concepto</option>
           <option>Fecha</option>
           <option>Tipo</option>
