@@ -1,6 +1,9 @@
 import { useState, createContext } from "react";
 import AppRouter from './AppRouter';
+
 export const dataContext = createContext()
+export const themeContext = createContext()
+
 
 const array = [
   { id:'op-1', concept:'Empresa Bayer', date:'2022-09-03', type:'Ingreso', amount:'10000' },
@@ -15,12 +18,22 @@ const array = [
   { id:'op-10', concept:'Pava electrica', date:'2022-11-04', type:'Egreso', amount:'16000' },
 ]
 
+const myThemes = {
+  dark:{backgroundColor:'#456', color:'white', type:'ligth'},
+  ligth:{backgroundColor:'#eee', color:'black', type:'dark'},
+}
+
 const  App = () => {
   const [data, setData] = useState(array)
+  const [theme, setTheme] = useState(myThemes.ligth)
+
+  const chooseTheme = () => theme.type === 'dark' ? setTheme(myThemes.dark) : setTheme(myThemes.ligth)
 
   return (
     <dataContext.Provider value={{data, setData}}>
-      <AppRouter />
+      <themeContext.Provider value={{chooseTheme, theme}}>
+        <AppRouter />
+      </themeContext.Provider>
     </dataContext.Provider>
   )
 }

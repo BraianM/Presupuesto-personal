@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Button from './Button'
 
 const estiloLi = {
   textDecoration: 'none',
@@ -19,6 +20,7 @@ const estiloDiv = {
   minWidth: '300px',
   backgroundColor: '#456',
   height: '100vh',
+  borderRight: '1px solid #ddd',
 }
 
 const estiloIconUsuario = {
@@ -35,23 +37,24 @@ const estiloContIcon = {
   padding: '10px 0px',
 }
 
-const Sidebar = () => {
+const Sidebar = ({theme, chooseTheme }) => {
+
   return (
-    <div style={ estiloDiv }>
+    <div style={ {...estiloDiv, ...theme} }>
       <div style={ estiloContIcon }>
         <div style={ estiloIconUsuario }></div>
       </div>
       <hr />
-      <ul style={ estiloUl }>
-        <li><Link style={ estiloLi } to='/'>Home</Link></li>
-        <li><Link style={ estiloLi } to='/nueva-operacion'>Nueva operacion</Link></li>
-        <li><Link style={ estiloLi } to='/operaciones'>Operaciones</Link></li>
+      <ul style={{...estiloUl, ...theme}}>
+        <li><Link style={{...estiloLi, ...theme}} to='/'>Home</Link></li>
+        <li><Link style={{...estiloLi, ...theme}} to='/nueva-operacion'>Nueva operacion</Link></li>
+        <li><Link style={{...estiloLi, ...theme}} to='/operaciones'>Operaciones</Link></li>
         <li>Estadisticas</li>
       </ul>
       <hr />
-      <ul style={ estiloUl }>
+      <ul style={{...estiloUl, ...theme}}>
         <li>Cuenta de usuario</li>
-        <li>Tema oscuro</li>
+        <li>Tema <Button chooseTheme={() => chooseTheme()}>{theme.type}</Button></li>
         <li>Ayuda</li>
         <li>Salir</li>
       </ul>

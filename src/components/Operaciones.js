@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-import { dataContext } from './App';
+import { dataContext, themeContext } from './App';
 import DataList from './table/DataList'
 import Sidebar from './Sidebar';
 import Table from './table/Table'
@@ -26,6 +26,7 @@ const stylesH1 = {
 
 const Operaciones = () => {
   const { data } = useContext(dataContext)
+  const {theme, chooseTheme} = useContext(themeContext)
   const [list, setList] = useState(data)
 
   const showList = () => {
@@ -38,7 +39,7 @@ const Operaciones = () => {
 
   return (
     <div style={ estiloDiv }>
-      <Sidebar />
+      <Sidebar theme={theme} chooseTheme={chooseTheme} />
       <section style={stylesSection}>
         <h1 style={stylesH1}>Lista de operaciones</h1>
         <ViewFilter data={data} getList={getList} />

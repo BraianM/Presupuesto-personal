@@ -2,7 +2,7 @@ import Sidebar from './Sidebar'
 import Table from './table/Table'
 import DataList from './table/DataList'
 import { useContext } from 'react'
-import { dataContext } from './App'
+import { dataContext, themeContext } from './App'
 import Resultanteactual from './Resultanteactual';
 
 const styles = {
@@ -25,6 +25,7 @@ const styleH2 = {
 
 const Home = () => {
   const { data } = useContext(dataContext)
+  const {theme, chooseTheme} = useContext(themeContext)
 
   const myFilter = data.filter((op, i, data) => i >= data.length - 10 ?  op : null)
  
@@ -34,7 +35,7 @@ const Home = () => {
   return (
     <main style={styles} className='app'>
       <aside>
-        <Sidebar />
+        <Sidebar theme={theme} chooseTheme={chooseTheme} />
       </aside>
       <section style={stylesSection}>
         <Resultanteactual />

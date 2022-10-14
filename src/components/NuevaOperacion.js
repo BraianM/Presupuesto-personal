@@ -1,5 +1,7 @@
 import Sidebar from "./Sidebar";
 import Formulario from "./Formulario";
+import {useContext} from 'react'
+import {themeContext} from './App'
 
 const stylesDiv = {
   display: 'flex',
@@ -19,10 +21,12 @@ const stylesH1 = {
 }
 
 const NuevaOperacion = () => {
+  const {theme, chooseTheme} = useContext(themeContext)
+
   return (
     <div style={stylesDiv}>
       <aside>
-        <Sidebar />
+        <Sidebar theme={theme} chooseTheme={chooseTheme} />
       </aside>
       <section style={stylesSection}>
         <h1 style={stylesH1}>INGRESA OPERACION</h1>
