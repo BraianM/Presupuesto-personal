@@ -1,3 +1,5 @@
+import {useContext} from 'react'
+import {dataContext} from './../App'
 import Button from './../Button'
 
 const td = ({wh='100px', alg='center'}) =>({ 
@@ -18,7 +20,8 @@ const styleButton = ({bg='#0095eb'}) => ({
   borderRadius: '5px',
 })
 
-const DataList = ({ parOrImpar, concept, date, type, amount }) => {
+const DataList = ({id, parOrImpar, concept, date, type, amount}) => {
+  const {data, setData} = useContext(dataContext)
   const setColorRow = (value) => {
     if (value % 2) {
       return '#ffffff'
@@ -39,6 +42,8 @@ const DataList = ({ parOrImpar, concept, date, type, amount }) => {
       <td style={{...td({}), ...thRow({color: setColorRow(parOrImpar)})}}>
         <div style={container}>
           <Button 
+            id={id}
+            onClick={() => console.log('Modificado')}
             styleModify={styleButton({})}
             colorMouseEnter={'rgba(0, 149, 235, 0.8)'}
             colorMouseLeave={'rgba(0, 149, 235, 1)'}
@@ -46,6 +51,8 @@ const DataList = ({ parOrImpar, concept, date, type, amount }) => {
           {'M'}
           </Button>
           <Button
+            id={id}
+            onClick={() => console.log(data)}
             styleDelete={styleButton({bg:'rgba(220, 0, 0, 1)'})}
             colorMouseEnter={'rgba(225, 0, 0, 0.8)'}
             colorMouseLeave={'rgba(220, 0, 0, 1)'}

@@ -54,7 +54,7 @@ const Sidebar = ({theme, chooseTheme }) => {
       <hr />
       <ul style={{...estiloUl, ...theme}}>
         <li>Cuenta de usuario</li>
-        <li>Tema <Button chooseTheme={() => chooseTheme()} colorMouseEnter={'rgba(0, 149, 235, 0.8)'} colorMouseLeave={'rgba(0, 149, 235, 1)'}>{theme.type}</Button></li>
+        <li>Tema <Button onClick={() => chooseTheme()} colorMouseEnter={'rgba(0, 149, 235, 0.8)'} colorMouseLeave={'rgba(0, 149, 235, 1)'}>{theme.type}</Button></li>
         <li>Ayuda</li>
         <li>Salir</li>
       </ul>

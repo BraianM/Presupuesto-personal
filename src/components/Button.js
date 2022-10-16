@@ -15,12 +15,12 @@ const styleMouseLeave = ({target}, rgba) => {
   target.style.backgroundColor = rgba
 }
 
-const Button = ({children, chooseTheme, styleModify, styleDelete, colorMouseEnter, colorMouseLeave}) => {
+const Button = ({children, onClick, styleModify, styleDelete, colorMouseEnter, colorMouseLeave}) => {
 
   return (
     <button 
       style={{...stylesButton({bg:'#0095eb', col:'white', pad:'10px 35px'}), ...styleModify, ...styleDelete}}
-      onClick={chooseTheme}
+      onClick={onClick}
       onMouseEnter={(e) => styleMouseEnter(e, colorMouseEnter)}
       onMouseLeave={(e) => styleMouseLeave(e, colorMouseLeave)}
     >

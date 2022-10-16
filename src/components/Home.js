@@ -24,14 +24,14 @@ const styleH2 = {
 }
 
 const Home = () => {
-  const { data } = useContext(dataContext)
+  const { data, setData } = useContext(dataContext)
   const {theme, chooseTheme} = useContext(themeContext)
 
   const myFilter = data.filter((op, i, data) => i >= data.length - 10 && op)
 
   const reverseFilter = myFilter.reverse()
   
-  const listFilter = reverseFilter.map((op, i) => <DataList key={op.id} concept={op.concept} date={op.date} type={op.type} amount={op.amount} parOrImpar={i} />)
+  const listFilter = reverseFilter.map((op, i) => <DataList id={op.id} key={op.id} concept={op.concept} date={op.date} type={op.type} amount={op.amount} parOrImpar={i} />)
 
   return (
     <main style={styles} className='app'>
