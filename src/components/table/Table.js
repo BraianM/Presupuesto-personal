@@ -21,7 +21,6 @@ const th = ({}) => ({
 })
 
 const Table = ({ list }) => {
-
   return (
     <table style={table({ wd:'1000px' })}>
       <thead >
