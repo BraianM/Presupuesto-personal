@@ -19,7 +19,7 @@ const stylesForm = {
 const contenButton = {
   display: 'flex',
   flexDirection: 'row',
-  justifyContent: 'space-between',
+  justifyContent: 'center',
   width: '100%',
   marginTop: '20px',
 }
@@ -116,8 +116,7 @@ const Formulario = () => {
           {errors.amount && <p>{errors.amount}</p>}
         </div>
         <div style={contenButton}>
-          <Button>Ingresar</Button>
-          <Button>Cancelar</Button>
+          <Button colorMouseEnter={'rgba(0, 149, 235, 0.8)'} colorMouseLeave={'rgba(0, 149, 235, 1)'}>Ingresar</Button>
         </div>
     </form>
   )
