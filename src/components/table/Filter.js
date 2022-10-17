@@ -48,7 +48,7 @@ const type = (onChange) => (
   </div>
 )
 
-const Filter = ({ option, getFilter }) => {
+const Filter = ({ option, setFilter }) => {
   const [dates, setDate] = useState({from:'', to:''})
 
   const getFilterDate = (date) => {
@@ -79,12 +79,12 @@ const Filter = ({ option, getFilter }) => {
     if (name === 'from' || name === 'to') {
       setDate({...dates, [name]: value})
       dates[name] = value
-      getFilter(value, getFilterDate)
+      setFilter(value, getFilterDate)
     } 
     if (name === 'type' || name === 'concept') {
       dates.from = ''
       dates.to = ''
-      getFilter(value, getFilterDate)
+      setFilter(value, getFilterDate)
     }
   }
 

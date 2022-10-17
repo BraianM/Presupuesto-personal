@@ -25,16 +25,27 @@ const stylesH1 = {
 }
 
 const Operaciones = () => {
-  const { data } = useContext(dataContext)
+  const { data, setData } = useContext(dataContext)
   const {theme, chooseTheme} = useContext(themeContext)
-  const [list, setList] = useState(data)
+  const [filter, setFilter] = useState(data)
 
-  const showList = () => {
-    return list.map((d, i) => <DataList key={d.id} concept={d.concept} date={d.date} type={d.type} amount={d.amount} parOrImpar={i} />)
+  const showFilter = () => {
+    return filter.map((d, i) => <DataList deleteOperation={deleteInData} id={d.id} key={d.id} concept={d.concept} date={d.date} type={d.type} amount={d.amount} parOrImpar={i} />)
   }
 
-  const getList = (array) => {
-    setList(array)
+  const deleteInData = (id) => {
+    const myFilter = data.filter((elm) => elm.id != id)
+    setData(myFilter)
+    deleteInList(id)
+  }
+  
+  const deleteInList = (id) => {
+    const myFilter = filter.filter((elm) => elm.id != id)
+    setFilter(myFilter)
+  }
+
+  const getNewFilter = (filter) => {
+    setFilter(filter)
   }
 
   return (
@@ -42,8 +53,8 @@ const Operaciones = () => {
       <Sidebar theme={theme} chooseTheme={chooseTheme} />
       <section style={stylesSection}>
         <h1 style={stylesH1}>Lista de operaciones</h1>
-        <ViewFilter data={data} getList={getList} />
-        <Table list={showList()} />
+        <ViewFilter data={data} getNewFilter={getNewFilter} />
+        <Table list={showFilter()} />
       </section>
     </div>
   );

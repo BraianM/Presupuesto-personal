@@ -31,7 +31,14 @@ const Home = () => {
 
   const reverseFilter = myFilter.reverse()
   
-  const listFilter = reverseFilter.map((op, i) => <DataList id={op.id} key={op.id} concept={op.concept} date={op.date} type={op.type} amount={op.amount} parOrImpar={i} />)
+  const showFilter = () =>{
+    return reverseFilter.map((op, i) => <DataList deleteOperation={deleteInData} id={op.id} key={op.id} concept={op.concept} date={op.date} type={op.type} amount={op.amount} parOrImpar={i} />)
+  } 
+
+  const deleteInData = (id) => {
+    const myFilter = data.filter((elm) => elm.id != id)
+    setData(myFilter)
+  }
 
   return (
     <main style={styles} className='app'>
@@ -42,7 +49,7 @@ const Home = () => {
         <Resultanteactual data={data} />
         <div>
           <h2 style={styleH2}>Ultimas operaciones:</h2>
-          <Table list={listFilter} />
+          <Table list={showFilter()} />
         </div>
       </section>
     </main>

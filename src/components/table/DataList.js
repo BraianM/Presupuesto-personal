@@ -1,5 +1,3 @@
-import {useContext} from 'react'
-import {dataContext} from './../App'
 import Button from './../Button'
 
 const td = ({wh='100px', alg='center'}) =>({ 
@@ -20,8 +18,12 @@ const styleButton = ({bg='#0095eb'}) => ({
   borderRadius: '5px',
 })
 
-const DataList = ({id, parOrImpar, concept, date, type, amount}) => {
-  const {data, setData} = useContext(dataContext)
+const container = {
+  display: 'flex',
+  justifyContent: 'space-evenly',
+}
+
+const DataList = ({deleteOperation, id, parOrImpar, concept, date, type, amount}) => {
   const setColorRow = (value) => {
     if (value % 2) {
       return '#ffffff'
@@ -29,10 +31,7 @@ const DataList = ({id, parOrImpar, concept, date, type, amount}) => {
       return '#f2f2f2'
     }
   }
-  const container = {
-    display: 'flex',
-    justifyContent: 'space-evenly',
-  }
+  
   return (
     <tr>
       <td style={{...td({wh:'250px', alg:'left'}), ...thRow({color: setColorRow(parOrImpar)})}}>{concept}</td>
@@ -52,7 +51,7 @@ const DataList = ({id, parOrImpar, concept, date, type, amount}) => {
           </Button>
           <Button
             id={id}
-            onClick={() => console.log(data)}
+            onClick={() => deleteOperation(id)}
             styleDelete={styleButton({bg:'rgba(220, 0, 0, 1)'})}
             colorMouseEnter={'rgba(225, 0, 0, 0.8)'}
             colorMouseLeave={'rgba(220, 0, 0, 1)'}

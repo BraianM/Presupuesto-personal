@@ -30,18 +30,18 @@ const contentSelect = {
   width: '350px',
 }
 
-const ViewFilter = ({data, getList}) => {
+const ViewFilter = ({data, getNewFilter}) => {
   const [option, setOption] = useState('Concepto')
 
   const handleChange = ({target}) => {
     const { value } = target
     setOption(value)
-    getList(data)
+    getNewFilter(data)
   }
 
-  const getFilter = (value, valueDate) => {
+  const setFilter = (value, valueDate) => {
     const myFilter = data.filter((e) => e.concept.toLowerCase().substring(0, value.length).includes(value.toLowerCase()) || valueDate(e.date) || e.type === value)
-    getList(myFilter)
+    getNewFilter(myFilter)
   }
 
   return (
@@ -54,7 +54,7 @@ const ViewFilter = ({data, getList}) => {
           <option>Tipo</option>
         </select> 
       </div>
-      <Filter getFilter={getFilter} option={option} />
+      <Filter setFilter={setFilter} option={option} />
     </div>
   )
 }
