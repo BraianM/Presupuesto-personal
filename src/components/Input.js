@@ -1,4 +1,4 @@
-const stylesInput = {
+const stylesDefaultInput = {
   marginBottom: '15px',
   width: '100%',
   padding: '12px',
@@ -9,12 +9,12 @@ const stylesInput = {
   resize: 'none',
 }
 
-const Input = ({ inputFilter, type, id, name, handleChange, value, checked }) => {
+const Input = ({ inlyneStyle, type, id, name, handleChange, value, checked }) => {
   return (
     <input
       onChange={handleChange}
-      value={value}
-      style={{...stylesInput, ...inputFilter}}
+      defaultValue={value}
+      style={{...stylesDefaultInput, ...inlyneStyle}}
       type={type}
       id={id}
       name={name}

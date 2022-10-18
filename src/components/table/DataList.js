@@ -1,4 +1,6 @@
-import Button from './../Button'
+import Input from './../Input'
+import Actions from './Actions'
+import {useState} from 'react'
 
 const td = ({wh='100px', alg='center'}) =>({ 
   padding: '8px',
@@ -11,19 +13,18 @@ const thRow = ({ color='#fffff' }) => ({
   backgroundColor: color
 })
 
-const styleButton = ({bg='#0095eb'}) => ({
-  backgroundColor: bg,
-  padding: '4px 8px',
-  fontWeight: 'bold',
-  borderRadius: '5px',
-})
-
-const container = {
-  display: 'flex',
-  justifyContent: 'space-evenly',
-}
+const styleInput = ({wh='100%', pad='5px', marg='0px'}) => ({ 
+  width: wh,
+  border: '1px solid #ddd',
+  margin: marg,
+  padding: pad, 
+  boxSizing: 'border-box',
+  type: 'text',
+}) 
 
 const DataList = ({deleteOperation, id, parOrImpar, concept, date, type, amount}) => {
+  const [action, setAction] = useState('notEdit')
+
   const setColorRow = (value) => {
     if (value % 2) {
       return '#ffffff'
@@ -31,34 +32,26 @@ const DataList = ({deleteOperation, id, parOrImpar, concept, date, type, amount}
       return '#f2f2f2'
     }
   }
-  
+
   return (
     <tr>
-      <td style={{...td({wh:'250px', alg:'left'}), ...thRow({color: setColorRow(parOrImpar)})}}>{concept}</td>
-      <td style={{...td({}), ...thRow({color: setColorRow(parOrImpar)})}}>{date}</td>
-      <td style={{...td({}), ...thRow({color: setColorRow(parOrImpar)})}}>{type}</td>
-      <td style={{...td({}), ...thRow({color: setColorRow(parOrImpar)})}}>{amount}</td>
+      <td style={{...td({wh:'250px', alg:'left'}), ...thRow({color: setColorRow(parOrImpar)})}}>
+        {action === 'notEdit' && concept}
+        {action === 'edit' && <Input value={concept} inlyneStyle={styleInput({})} />}
+      </td>
       <td style={{...td({}), ...thRow({color: setColorRow(parOrImpar)})}}>
-        <div style={container}>
-          <Button 
-            id={id}
-            onClick={() => console.log('Modificado')}
-            styleModify={styleButton({})}
-            colorMouseEnter={'rgba(0, 149, 235, 0.8)'}
-            colorMouseLeave={'rgba(0, 149, 235, 1)'}
-          >
-          {'M'}
-          </Button>
-          <Button
-            id={id}
-            onClick={() => deleteOperation(id)}
-            styleDelete={styleButton({bg:'rgba(220, 0, 0, 1)'})}
-            colorMouseEnter={'rgba(225, 0, 0, 0.8)'}
-            colorMouseLeave={'rgba(220, 0, 0, 1)'}
-          >
-          {'D'}
-          </Button>
-        </div>
+        {action === 'notEdit' && date}
+        {action === 'edit' && <Input value={date} inlyneStyle={styleInput({})} />}
+      </td>
+      <td style={{...td({}), ...thRow({color: setColorRow(parOrImpar)})}}>
+      {type}
+      </td>
+      <td style={{...td({}), ...thRow({color: setColorRow(parOrImpar)})}}>
+        {action === 'notEdit' && amount}
+        {action === 'edit' && <Input value={amount} inlyneStyle={styleInput({})} />}
+      </td>
+      <td style={{...td({}), ...thRow({color: setColorRow(parOrImpar)})}}>
+        <Actions deleteOperation={deleteOperation} id={id} hookAction={{action, setAction}} />
       </td>
     </tr>
   )

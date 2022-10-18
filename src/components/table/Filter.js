@@ -18,31 +18,31 @@ const contentFilter = {
 
 const concept = (onChange) => (
   <div style={contentFilter}>
-    <Input handleChange={(e) => onChange(e)} inputFilter={inputFilter({wh:'505px'})} name='concept' type='text' />
+    <Input handleChange={(e) => onChange(e)} inlyneStyle={inputFilter({wh:'505px'})} name='concept' type='text' />
   </div>
 ) 
 
 const date = (onChange) => (
   <div style={contentFilter}>
     <Label>Desde</Label>
-    <Input handleChange={(e) => onChange(e)} inputFilter={inputFilter({marg:'0px 10px'})} name={'from'} type='date' />
+    <Input handleChange={(e) => onChange(e)} inlyneStyle={inputFilter({marg:'0px 10px'})} name={'from'} type='date' />
     <Label>hasta</Label>
-    <Input handleChange={(e) => onChange(e)} inputFilter={inputFilter({marg:'0px 10px'})} name={'to'} type='date' />
+    <Input handleChange={(e) => onChange(e)} inlyneStyle={inputFilter({marg:'0px 10px'})} name={'to'} type='date' />
   </div>
 )
 
 const type = (onChange) => (
   <div style={contentFilter}>
     <div>
-      <Input handleChange={(e) => onChange(e)} inputFilter={inputFilter({wh:'20px', marg:'0px 10px 0px 0px'})} name={'type'} type={'radio'} checked={true} />
+      <Input handleChange={(e) => onChange(e)} inlyneStyle={inputFilter({wh:'20px', marg:'0px 10px 0px 0px'})} name={'type'} type={'radio'} checked={true} />
       <Label>Ingreso & Egreso</Label>
     </div>
     <div>
-      <Input handleChange={(e) => onChange(e)} inputFilter={inputFilter({wh:'20px', marg:'0px 10px 0px 30px'})} value={'Ingreso'} name={'type'} type={'radio'} />
+      <Input handleChange={(e) => onChange(e)} inlyneStyle={inputFilter({wh:'20px', marg:'0px 10px 0px 30px'})} value={'Ingreso'} name={'type'} type={'radio'} />
       <Label>Ingreso</Label>
     </div>
     <div>
-      <Input handleChange={(e) => onChange(e)} inputFilter={inputFilter({wh:'20px', marg:'0px 10px 0px 30px'})} value={'Egreso'} name={'type'} type={'radio'}  />
+      <Input handleChange={(e) => onChange(e)} inlyneStyle={inputFilter({wh:'20px', marg:'0px 10px 0px 30px'})} value={'Egreso'} name={'type'} type={'radio'}  />
       <Label>Egreso</Label>
     </div>
   </div>
