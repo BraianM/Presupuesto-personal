@@ -36,7 +36,7 @@ const Formulario = () => {
   })
 
   const addOperation = () => {
-    if (evaluateResult() === 0  && input.type === 'Egreso' || evaluateResult() < input.amount && input.type === 'Egreso') {
+    if ((evaluateResult() === 0  && input.type === 'Egreso') || (evaluateResult() < input.amount && input.type === 'Egreso')) {
       console.log('Balance actual 0')
     } else {
       data.push(input)
@@ -93,7 +93,6 @@ const Formulario = () => {
     }
   }
 
-  console.log(input.amount)
   return (
     <form style={stylesForm} onSubmit={handleSubmit}>
         <div>

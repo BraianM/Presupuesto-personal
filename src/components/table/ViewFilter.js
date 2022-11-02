@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import {useState} from 'react'
 import Label from './../Label'
 import Filter from './Filter'
 
@@ -30,18 +30,18 @@ const contentSelect = {
   width: '350px',
 }
 
-const ViewFilter = ({data, getNewFilter}) => {
+const ViewFilter = ({data, getFilter}) => {
   const [option, setOption] = useState('Concepto')
 
   const handleChange = ({target}) => {
     const { value } = target
     setOption(value)
-    getNewFilter(data)
+    getFilter(data)
   }
 
   const setFilter = (value, valueDate) => {
     const myFilter = data.filter((e) => e.concept.toLowerCase().substring(0, value.length).includes(value.toLowerCase()) || valueDate(e.date) || e.type === value)
-    getNewFilter(myFilter)
+    getFilter(myFilter)
   }
 
   return (

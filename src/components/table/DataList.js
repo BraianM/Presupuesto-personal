@@ -22,8 +22,14 @@ const styleInput = ({wh='100%', pad='5px', marg='0px'}) => ({
   type: 'text',
 }) 
 
-const DataList = ({deleteOperation, id, parOrImpar, concept, date, type, amount}) => {
+const DataList = ({router, id, parOrImpar, concept, date, type, amount}) => {
   const [action, setAction] = useState('notEdit')
+  const [valuesInput, setInput] = useState({id: id, concept: concept, date: date, type: type, amount: amount})
+
+  const handleChange = ({target}) => {
+    const {name, value} = target
+    setInput({...valuesInput, [name]: value})
+  }
 
   const setColorRow = (value) => {
     if (value % 2) {
@@ -32,26 +38,26 @@ const DataList = ({deleteOperation, id, parOrImpar, concept, date, type, amount}
       return '#f2f2f2'
     }
   }
-
+  
   return (
     <tr>
       <td style={{...td({wh:'250px', alg:'left'}), ...thRow({color: setColorRow(parOrImpar)})}}>
         {action === 'notEdit' && concept}
-        {action === 'edit' && <Input value={concept} inlyneStyle={styleInput({})} />}
+        {action === 'edit' && <Input handleChange={handleChange} name={'concept'} value={concept} inlyneStyle={styleInput({})} />}
       </td>
       <td style={{...td({}), ...thRow({color: setColorRow(parOrImpar)})}}>
         {action === 'notEdit' && date}
-        {action === 'edit' && <Input value={date} inlyneStyle={styleInput({})} />}
+        {action === 'edit' && <Input handleChange={handleChange} name={'date'} value={date} inlyneStyle={styleInput({})} />}
       </td>
       <td style={{...td({}), ...thRow({color: setColorRow(parOrImpar)})}}>
-      {type}
+        {type}
       </td>
       <td style={{...td({}), ...thRow({color: setColorRow(parOrImpar)})}}>
         {action === 'notEdit' && amount}
-        {action === 'edit' && <Input value={amount} inlyneStyle={styleInput({})} />}
+        {action === 'edit' && <Input handleChange={handleChange} name={'amount'} value={amount} inlyneStyle={styleInput({})} />}
       </td>
       <td style={{...td({}), ...thRow({color: setColorRow(parOrImpar)})}}>
-        <Actions deleteOperation={deleteOperation} id={id} hookAction={{action, setAction}} />
+        <Actions router={router} id={id} hookAction={{action, setAction}} valuesInput={valuesInput} />
       </td>
     </tr>
   )

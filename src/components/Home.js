@@ -1,6 +1,5 @@
 import Sidebar from './Sidebar'
 import Table from './table/Table'
-import DataList from './table/DataList'
 import { useContext } from 'react'
 import { dataContext, themeContext } from './App'
 import Resultanteactual from './Resultanteactual';
@@ -24,21 +23,10 @@ const styleH2 = {
 }
 
 const Home = () => {
-  const { data, setData } = useContext(dataContext)
+  const {data} = useContext(dataContext)
   const {theme, chooseTheme} = useContext(themeContext)
-
   const myFilter = data.filter((op, i, data) => i >= data.length - 10 && op)
-
   const reverseFilter = myFilter.reverse()
-  
-  const showFilter = () =>{
-    return reverseFilter.map((op, i) => <DataList deleteOperation={deleteInData} id={op.id} key={op.id} concept={op.concept} date={op.date} type={op.type} amount={op.amount} parOrImpar={i} />)
-  } 
-
-  const deleteInData = (id) => {
-    const myFilter = data.filter((elm) => elm.id != id)
-    setData(myFilter)
-  }
 
   return (
     <main style={styles} className='app'>
@@ -49,7 +37,7 @@ const Home = () => {
         <Resultanteactual data={data} />
         <div>
           <h2 style={styleH2}>Ultimas operaciones:</h2>
-          <Table list={showFilter()} />
+          <Table router={'home'} list={reverseFilter} />
         </div>
       </section>
     </main>
